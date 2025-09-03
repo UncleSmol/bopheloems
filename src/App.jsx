@@ -1,26 +1,39 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom"; // Import Routes and Route
+import { Routes, Route } from "react-router-dom";
 import Header from "./components/header/Header";
-
-// Import your page components
-// You'll need to create these files if they don't exist
-// import HomePage from "./pages/HomePage";
-// import AboutPage from "./pages/AboutPage";
-// import CareersPage from "./pages/CareersPage";
-// import ServicesPage from "./pages/ServicesPage";
-// import ContactPage from "./pages/ContactPage";
+import Footer from "./components/footer/Footer";
+import HomePage from "./pages/HomePage";
+import AboutPage from "./pages/AboutPage";
+import ServicesPage from "./pages/ServicesPage";
+import CareersPage from "./pages/CareersPage";
+import ContactPage from "./pages/ContactPage";
 
 const App = () => {
   return (
-    <div>
+    <div className="app">
       <Header />
-      <Routes>
-        {/* <Route path="/" element={<HomePage />} />
-        <Route path="/about" element={<AboutPage />} />
-        <Route path="/careers" element={<CareersPage />} />
-        <Route path="/services" element={<ServicesPage />} />
-        <Route path="/contact" element={<ContactPage />} /> */}
-      </Routes>
+      <main className="main-content">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/services" element={<ServicesPage />} />
+          <Route path="/careers" element={<CareersPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+        </Routes>
+      </main>
+      <Footer />
+
+      <style jsx>{`
+        .app {
+          min-height: 100vh;
+          display: flex;
+          flex-direction: column;
+        }
+
+        .main-content {
+          flex: 1;
+        }
+      `}</style>
     </div>
   );
 };
