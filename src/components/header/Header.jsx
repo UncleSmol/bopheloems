@@ -8,7 +8,6 @@ import ServicesIcon from "../../assets/gifs/helpdesk.gif";
 import ContactIcon from "../../assets/gifs/contact.gif";
 import DevDocLogo from "../../sig/dev-doc-logo.svg";
 import { FaBars, FaTimes } from "react-icons/fa";
-import "../../styles/Header.css";
 
 const NavItemsObject = [
   {

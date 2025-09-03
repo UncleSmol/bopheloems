@@ -1,5 +1,9 @@
 /* Comprehensive CSS Reset v1.0 - Modern, Compatible, Extendable */
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* 1. Universal box-sizing and zero margin/padding */
 *,
 *::before,
