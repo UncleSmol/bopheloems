@@ -1,0 +1,221 @@
+/* Comprehensive CSS Reset v1.0 - Modern, Compatible, Extendable */
+
+/* 1. Universal box-sizing and zero margin/padding */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* 2. Remove default border and background for all elements */
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+main,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  border: 0;
+  background: none;
+  vertical-align: baseline;
+  font-size: 100%;
+  font-family: inherit;
+  color: inherit;
+}
+
+/* 3. Set base font and smooth rendering */
+html {
+  line-height: 1.5;
+  font-size: 16px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Arial, "Noto Sans", "Liberation Sans", sans-serif;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+/* 4. Remove list styles */
+ol,
+ul,
+menu {
+  list-style: none;
+}
+
+/* 5. Remove quotes from blockquotes and q */
+blockquote,
+q {
+  quotes: none;
+}
+blockquote::before,
+blockquote::after,
+q::before,
+q::after {
+  content: "";
+}
+
+/* 6. Set images and media to block and max-width 100% */
+img,
+svg,
+video,
+canvas,
+audio,
+iframe,
+embed,
+object {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* 7. Normalize tables */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* 8. Inherit fonts for form elements and remove extra appearance */
+input,
+button,
+textarea,
+select {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+button,
+[type="button"],
+[type="submit"],
+[type="reset"] {
+  cursor: pointer;
+  background: none;
+}
+
+/* 9. Remove text-decoration from links and ensure color inheritance */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* 10. Remove focus rings unless focused via keyboard (for accessibility, adjust as needed) */
+:focus {
+  outline: none;
+}
+
+/* 11. Prevent unwanted tap highlights on mobile */
+a,
+button,
+input,
+textarea,
+select {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* 12. Reset superscript/subscript */
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  vertical-align: baseline;
+  position: relative;
+}
+sup {
+  top: -0.5em;
+}
+sub {
+  bottom: -0.25em;
+}
+
+/* 13. Hide elements with hidden attribute */
+[hidden] {
+  display: none !important;
+}
+
+/* 14. Normalize hr */
+hr {
+  height: 0;
+  border: none;
+  border-top: 1px solid #ccc;
+}
