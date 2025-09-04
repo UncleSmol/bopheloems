@@ -103,24 +103,21 @@ const Header = () => {
       <header className="header">
         <div className="header-container">
           {/* Logo */}
-          <motion.figure 
+          <motion.figure
             className="header-logo"
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <img
-              src={BopheloMedLogo}
-              alt="Bophelo EMS company logo"
-            />
+            <img src={BopheloMedLogo} alt="Bophelo EMS company logo" />
           </motion.figure>
 
           {/* Desktop Navigation */}
           <nav className="nav-desktop">
             <ul className="nav-list">
               {NavItemsObject.map((navItem, index) => (
-                <motion.li 
-                  key={navItem.navItemId} 
+                <motion.li
+                  key={navItem.navItemId}
                   className="nav-item"
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -141,7 +138,7 @@ const Header = () => {
           </nav>
 
           {/* DevDoc Logo - Hidden on desktop, visible on mobile */}
-          <motion.figure 
+          <motion.figure
             className="devdoc-logo"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -152,7 +149,7 @@ const Header = () => {
 
           {/* Mobile Menu Button */}
           <motion.button
-            className="mobile-menu-btn"
+            className="mobile-menu-btn z-[99]"
             onClick={toggleMobileMenu}
             aria-label="Toggle mobile menu"
             whileTap={{ scale: 0.95 }}
@@ -186,20 +183,23 @@ const Header = () => {
             >
               <div className="mobile-menu-content">
                 {/* DevDoc Logo - Visible on mobile */}
-                <motion.div 
+                <motion.div
                   className="mobile-devdoc"
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: 0.2 }}
                 >
-                  <img src={DevDocLogo} alt="Dev Doc Logo" />
+                  <a href="https://unclesmol.github.io/dev-doc">
+                    <span className="text-sm text-gray-400">Developed By:</span>
+                    <img src={DevDocLogo} alt="Dev Doc Logo" className="w-20" />
+                  </a>
                 </motion.div>
 
                 <nav>
                   <ul className="mobile-nav-list">
                     {NavItemsObject.map((navItem, index) => (
-                      <motion.li 
-                        key={navItem.navItemId} 
+                      <motion.li
+                        key={navItem.navItemId}
                         className="mobile-nav-item"
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
@@ -303,11 +303,20 @@ const Header = () => {
         }
 
         .nav-icon {
-          height: var(--size-icon-sm);
-          width: var(--size-icon-sm);
+          height: 1.5rem;
+          width: 1.5rem;
           flex-shrink: 0;
           opacity: 0.8;
           transition: opacity var(--transition-normal);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .nav-icon img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
         }
 
         .nav-link:hover .nav-icon {
@@ -382,6 +391,8 @@ const Header = () => {
 
         .mobile-devdoc {
           display: flex;
+          flex-direction: column;
+          align-items: center;
           justify-content: center;
           margin-bottom: var(--space-xxl);
         }
@@ -389,6 +400,7 @@ const Header = () => {
         .mobile-devdoc img {
           height: 2rem;
           opacity: 0.8;
+          margin-top: 0.5rem;
         }
 
         .mobile-nav-list {
@@ -418,11 +430,20 @@ const Header = () => {
         }
 
         .mobile-nav-icon {
-          height: 2rem;
-          width: 2rem;
+          height: 1.5rem;
+          width: 1.5rem;
           flex-shrink: 0;
           opacity: 0.8;
           transition: opacity var(--transition-normal);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .mobile-nav-icon img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
         }
 
         .mobile-nav-link:hover .mobile-nav-icon {
@@ -439,11 +460,11 @@ const Header = () => {
           .nav-desktop {
             display: block;
           }
-          
+
           .mobile-menu-btn {
             display: none;
           }
-          
+
           .devdoc-logo {
             display: none;
           }

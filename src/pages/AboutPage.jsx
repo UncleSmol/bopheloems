@@ -1,116 +1,206 @@
 import React from "react";
 import { motion } from "framer-motion";
 
+// Hero video
+const heroVideo =
+  "https://cdn.pixabay.com/video/2019/02/23/21617-319452308_large.mp4";
+
+// Mission & Vision images/videos
+const missionMedia =
+  "https://cdn.pixabay.com/video/2022/01/27/105764-672186001_tiny.mp4";
+const visionMedia =
+  "https://cdn.pixabay.com/video/2022/12/28/144554-784867400_tiny.mp4";
+
+// Values media
+const valuesMedia = [
+  "https://cdn.pixabay.com/video/2022/10/07/133898-758336558_large.mp4",
+  "https://cdn.pixabay.com/video/2022/07/10/123689-728698068_large.mp4",
+  "https://cdn.pixabay.com/video/2021/06/15/77740-563529419_large.mp4",
+  "https://cdn.pixabay.com/video/2024/02/02/198918-909322169_large.mp4",
+];
+
+// Timeline images
+const timelineMedia = [
+  "https://cdn.pixabay.com/photo/2019/03/01/10/40/startup-4027674_960_720.jpg",
+  "https://cdn.pixabay.com/photo/2017/08/27/12/51/ambulance-2685925_960_720.jpg",
+  "https://cdn.pixabay.com/photo/2019/02/24/19/09/helicopter-4018257_1280.jpg",
+  "https://cdn.pixabay.com/photo/2020/04/22/16/15/virus-5078900_1280.jpg",
+  "https://cdn.pixabay.com/photo/2015/11/17/21/46/navigation-1048294_1280.jpg",
+];
+
+// Client logos
+const clients = [
+  "https://bopheloems.co.za/wp-content/uploads/2023/08/EUROP-S.png",
+  "https://bopheloems.co.za/wp-content/uploads/2023/08/DISCOVERY.png",
+  "https://bopheloems.co.za/wp-content/uploads/2023/08/ER24.png",
+  "https://bopheloems.co.za/wp-content/uploads/2023/08/NETCARE.png",
+];
+
+const values = [
+  {
+    title: "Compassion",
+    description:
+      "We treat every patient with dignity, respect, and empathy, understanding that we may be their lifeline in critical moments.",
+    icon: "❤️",
+    media: valuesMedia[0],
+  },
+  {
+    title: "Excellence",
+    description:
+      "We maintain the highest standards of medical care and continuously invest in training and equipment to deliver superior outcomes.",
+    icon: "⭐",
+    media: valuesMedia[1],
+  },
+  {
+    title: "Integrity",
+    description:
+      "We operate with transparency, honesty, and ethical practices in all our interactions with patients, families, and communities.",
+    icon: "🤝",
+    media: valuesMedia[2],
+  },
+  {
+    title: "Innovation",
+    description:
+      "We embrace new technologies and methodologies to improve our response times and treatment capabilities.",
+    icon: "💡",
+    media: valuesMedia[3],
+  },
+];
+
+const timeline = [
+  {
+    year: "2010",
+    title: "Company Founded",
+    description:
+      "Bophelo EMS was established with a mission to provide exceptional emergency medical services.",
+    media: timelineMedia[0],
+  },
+  {
+    year: "2015",
+    title: "Fleet Expansion",
+    description:
+      "Expanded our ambulance fleet to 25 vehicles, covering major metropolitan areas.",
+    media: timelineMedia[1],
+  },
+  {
+    year: "2018",
+    title: "Air Ambulance Service",
+    description:
+      "Launched helicopter emergency medical services for remote and critical cases.",
+    media: timelineMedia[2],
+  },
+  {
+    year: "2020",
+    title: "COVID-19 Response",
+    description:
+      "Adapted services to safely transport COVID-19 patients with specialized protocols.",
+    media: timelineMedia[3],
+  },
+  {
+    year: "2023",
+    title: "Technology Integration",
+    description:
+      "Implemented advanced GPS tracking and real-time patient monitoring systems.",
+    media: timelineMedia[4],
+  },
+];
+
+// Reusable media card component
+const MediaCard = ({ media, alt }) => {
+  const isVideo = media.endsWith(".mp4");
+  return isVideo ? (
+    <video
+      src={media}
+      autoPlay
+      muted
+      loop
+      playsInline
+      className="card-media"
+      preload="metadata"
+    />
+  ) : (
+    <img src={media} alt={alt} className="card-media" loading="lazy" />
+  );
+};
+
 const AboutPage = () => {
-  const values = [
-    {
-      title: "Compassion",
-      description: "We treat every patient with dignity, respect, and empathy, understanding that we may be their lifeline in critical moments.",
-      icon: "❤️"
-    },
-    {
-      title: "Excellence",
-      description: "We maintain the highest standards of medical care and continuously invest in training and equipment to deliver superior outcomes.",
-      icon: "⭐"
-    },
-    {
-      title: "Integrity",
-      description: "We operate with transparency, honesty, and ethical practices in all our interactions with patients, families, and communities.",
-      icon: "🤝"
-    },
-    {
-      title: "Innovation",
-      description: "We embrace new technologies and methodologies to improve our response times and treatment capabilities.",
-      icon: "💡"
-    }
-  ];
-
-  const timeline = [
-    {
-      year: "2010",
-      title: "Company Founded",
-      description: "Bophelo EMS was established with a mission to provide exceptional emergency medical services."
-    },
-    {
-      year: "2015",
-      title: "Fleet Expansion",
-      description: "Expanded our ambulance fleet to 25 vehicles, covering major metropolitan areas."
-    },
-    {
-      year: "2018",
-      title: "Air Ambulance Service",
-      description: "Launched helicopter emergency medical services for remote and critical cases."
-    },
-    {
-      year: "2020",
-      title: "COVID-19 Response",
-      description: "Adapted services to safely transport COVID-19 patients with specialized protocols."
-    },
-    {
-      year: "2023",
-      title: "Technology Integration",
-      description: "Implemented advanced GPS tracking and real-time patient monitoring systems."
-    }
-  ];
-
   return (
     <main className="about-page">
+      {/* Hero Section */}
       <section className="hero-section">
-        <div className="container">
-          <motion.div 
-            className="hero-content text-center"
-            initial={{ opacity: 0, y: 30 }}
+        <video
+          className="hero-video"
+          src={heroVideo}
+          autoPlay
+          muted
+          loop
+          playsInline
+        />
+        <div className="hero-overlay" />
+        <div className="hero-content container">
+          <motion.h1
+            className="hero-title"
+            initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 1 }}
           >
-            <h1 className="hero-title">About Bophelo EMS</h1>
-            <p className="hero-subtitle">
-              Leading emergency medical services across South Africa with compassion, 
-              expertise, and unwavering commitment to saving lives.
+            About Bophelo EMS
+          </motion.h1>
+          <motion.p
+            className="hero-subtitle"
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.3 }}
+          >
+            Leading emergency medical services across South Africa with
+            compassion, expertise, and unwavering commitment to saving lives.
+          </motion.p>
+        </div>
+      </section>
+
+      {/* Mission & Vision */}
+      <section className="section mission-vision-section">
+        <div className="container mission-vision-grid">
+          <motion.div
+            className="mission-card card"
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <MediaCard media={missionMedia} alt="Mission" />
+            <h2>Our Mission</h2>
+            <p>
+              At Bophelo EMS, our mission is to provide exceptional emergency
+              medical services that save lives and support communities across
+              South Africa. We are committed to delivering rapid, professional,
+              and compassionate care when it matters most.
+            </p>
+          </motion.div>
+
+          <motion.div
+            className="vision-card card"
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <MediaCard media={visionMedia} alt="Vision" />
+            <h2>Our Vision</h2>
+            <p>
+              To be the leading emergency medical service provider in South
+              Africa, recognized for our clinical excellence, innovative
+              approach, and dedication to improving emergency healthcare
+              outcomes for all South Africans.
             </p>
           </motion.div>
         </div>
       </section>
 
-      <section className="section">
-        <div className="container">
-          <div className="mission-vision-grid">
-            <motion.div 
-              className="mission-card card"
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            >
-              <h2>Our Mission</h2>
-              <p>
-                At Bophelo EMS, our mission is to provide exceptional emergency medical 
-                services that save lives and support communities across South Africa. 
-                We are committed to delivering rapid, professional, and compassionate 
-                care when it matters most.
-              </p>
-            </motion.div>
-            <motion.div 
-              className="vision-card card"
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            >
-              <h2>Our Vision</h2>
-              <p>
-                To be the leading emergency medical service provider in South Africa, 
-                recognized for our clinical excellence, innovative approach, and 
-                dedication to improving emergency healthcare outcomes for all South Africans.
-              </p>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
+      {/* Stats */}
       <section className="stats-section section">
         <div className="container">
-          <motion.h2 
+          <motion.h2
             className="text-center mb-xl"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -120,7 +210,7 @@ const AboutPage = () => {
             Our Impact
           </motion.h2>
           <div className="stats-grid">
-            <motion.div 
+            <motion.div
               className="stat-card card text-center"
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -130,7 +220,7 @@ const AboutPage = () => {
               <div className="stat-number">15,000+</div>
               <div className="stat-label">Lives Saved</div>
             </motion.div>
-            <motion.div 
+            <motion.div
               className="stat-card card text-center"
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -140,7 +230,7 @@ const AboutPage = () => {
               <div className="stat-number">50+</div>
               <div className="stat-label">Ambulances</div>
             </motion.div>
-            <motion.div 
+            <motion.div
               className="stat-card card text-center"
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -154,9 +244,10 @@ const AboutPage = () => {
         </div>
       </section>
 
+      {/* Values */}
       <section className="values-section section">
         <div className="container">
-          <motion.h2 
+          <motion.h2
             className="text-center mb-xl"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -175,6 +266,7 @@ const AboutPage = () => {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
               >
+                <MediaCard media={value.media} alt={value.title} />
                 <div className="value-icon">{value.icon}</div>
                 <h3>{value.title}</h3>
                 <p>{value.description}</p>
@@ -184,9 +276,10 @@ const AboutPage = () => {
         </div>
       </section>
 
+      {/* Timeline */}
       <section className="timeline-section section">
         <div className="container">
-          <motion.h2 
+          <motion.h2
             className="text-center mb-xl"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -207,6 +300,7 @@ const AboutPage = () => {
               >
                 <div className="timeline-year">{item.year}</div>
                 <div className="timeline-content card">
+                  <MediaCard media={item.media} alt={item.title} />
                   <h4>{item.title}</h4>
                   <p>{item.description}</p>
                 </div>
@@ -216,200 +310,137 @@ const AboutPage = () => {
         </div>
       </section>
 
+      {/* Clients */}
+      <section className="clients-section section">
+        <div className="container">
+          <motion.h2
+            className="text-center mb-xl"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            Our Clients
+          </motion.h2>
+          <div className="clients-grid">
+            {clients.map((client, idx) => (
+              <img
+                key={idx}
+                src={client}
+                alt={`Client ${idx}`}
+                loading="lazy"
+                className="client-logo"
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
       <style jsx>{`
-        .about-page {
-          min-height: 100vh;
-        }
-
         .hero-section {
-          background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
-          color: var(--color-text-inverse);
-          padding: var(--space-xxl) 0;
+          position: relative;
+          height: 70vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          overflow: hidden;
+          text-align: center;
         }
-
-        .hero-title {
-          font-size: var(--font-size-hero);
-          margin-bottom: var(--space-lg);
+        .hero-video {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          z-index: 0;
         }
-
-        .hero-subtitle {
-          font-size: var(--font-size-xl);
-          max-width: 800px;
-          margin: 0 auto;
-          opacity: 0.95;
+        .hero-overlay {
+          position: absolute;
+          inset: 0;
+          background-color: rgba(0, 0, 0, 0.5);
+          z-index: 1;
         }
-
-        .mission-vision-grid {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: var(--space-xl);
+        .hero-content {
+          position: relative;
+          z-index: 2;
+          color: white;
         }
-
-        .mission-card,
-        .vision-card {
-          border-left: 4px solid var(--color-primary);
-        }
-
-        .mission-card h2,
-        .vision-card h2 {
-          color: var(--color-primary);
-          margin-bottom: var(--space-md);
-        }
-
-        .stats-section {
-          background-color: var(--color-surface-alt);
-        }
-
-        .stats-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-          gap: var(--space-xl);
-        }
-
-        .stat-card {
-          transition: all var(--transition-normal);
-        }
-
-        .stat-card:hover {
-          transform: translateY(-8px);
-          box-shadow: var(--shadow-lg);
-        }
-
-        .stat-number {
-          font-family: var(--font-title);
-          font-size: var(--font-size-hero);
-          color: var(--color-primary);
-          margin-bottom: var(--space-sm);
-        }
-
-        .stat-label {
-          font-size: var(--font-size-lg);
-          color: var(--color-text-muted);
-          font-weight: var(--font-weight-bold);
-        }
-
-        .values-section {
-          background-color: var(--color-surface);
-        }
-
+        .mission-vision-grid,
         .values-grid {
           display: grid;
           grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-          gap: var(--space-xl);
+          gap: 2rem;
         }
-
-        .value-card {
-          text-align: center;
-          border-left: 4px solid var(--color-accent);
-        }
-
-        .value-icon {
-          font-size: 3rem;
-          margin-bottom: var(--space-lg);
-        }
-
-        .value-card h3 {
-          color: var(--color-secondary);
+        .card-media {
+          width: 100%;
+          height: 200px;
+          object-fit: cover;
+          border-radius: var(--border-radius-md);
           margin-bottom: var(--space-md);
         }
-
-        .timeline-section {
-          background-color: var(--color-surface-alt);
-        }
-
-        .timeline {
-          max-width: 800px;
+        .timeline-section .timeline {
+          max-width: 900px;
           margin: 0 auto;
           position: relative;
         }
-
-        .timeline::before {
-          content: '';
+        .timeline-section .timeline::before {
+          content: "";
           position: absolute;
           left: 50%;
           top: 0;
           bottom: 0;
-          width: 2px;
+          width: 4px;
           background-color: var(--color-primary);
           transform: translateX(-50%);
         }
-
         .timeline-item {
           display: flex;
           align-items: center;
-          margin-bottom: var(--space-xxl);
+          margin-bottom: 3rem;
           position: relative;
         }
-
         .timeline-item:nth-child(even) {
           flex-direction: row-reverse;
         }
-
         .timeline-year {
           background-color: var(--color-primary);
           color: var(--color-text-inverse);
-          padding: var(--space-sm) var(--space-md);
-          border-radius: var(--border-radius-pill);
-          font-weight: var(--font-weight-bold);
-          font-size: var(--font-size-md);
+          padding: 0.5rem 1rem;
+          border-radius: 999px;
+          font-weight: bold;
+          font-size: 1rem;
           position: absolute;
           left: 50%;
           transform: translateX(-50%);
           z-index: 2;
         }
-
         .timeline-content {
           width: 45%;
-          margin: 0 5%;
+          margin: 0 2.5%;
         }
-
-        .timeline-content h4 {
-          color: var(--color-secondary);
-          margin-bottom: var(--space-sm);
+        .clients-grid {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 2rem;
+          justify-content: center;
+          align-items: center;
         }
-
-        .timeline-content p {
-          margin: 0;
-          color: var(--color-text-muted);
+        .client-logo {
+          max-height: 60px;
+          object-fit: contain;
         }
-
         @media (max-width: 768px) {
-          .hero-title {
-            font-size: var(--font-size-xxl);
-          }
-          
-          .hero-subtitle {
-            font-size: var(--font-size-lg);
-          }
-          
-          .mission-vision-grid {
-            grid-template-columns: 1fr;
-          }
-          
-          .stats-grid {
-            grid-template-columns: 1fr;
-          }
-          
-          .values-grid {
-            grid-template-columns: 1fr;
-          }
-          
-          .timeline::before {
-            left: var(--space-lg);
-          }
-          
           .timeline-item {
-            flex-direction: row !important;
-            padding-left: var(--space-xxl);
+            flex-direction: column !important;
           }
-          
-          .timeline-year {
-            left: var(--space-lg);
-          }
-          
           .timeline-content {
             width: 100%;
-            margin: 0;
+            margin-top: 1rem;
+          }
+          .timeline-year {
+            left: 0;
+            transform: none;
           }
         }
       `}</style>

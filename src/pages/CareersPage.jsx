@@ -8,53 +8,57 @@ const CareersPage = () => {
       title: "Paramedic - Advanced Life Support",
       location: "Johannesburg",
       type: "Full-time",
-      description: "Join our team of elite paramedics providing advanced life support services across Johannesburg.",
+      description:
+        "Join our team of elite paramedics providing advanced life support services across Johannesburg.",
       requirements: [
         "Registered Paramedic with HPCSA",
         "Minimum 2 years ALS experience",
         "Valid driver's license (Code 10)",
-        "Strong communication skills"
-      ]
+        "Strong communication skills",
+      ],
     },
     {
       id: 2,
       title: "Emergency Medical Technician",
       location: "Cape Town",
       type: "Full-time",
-      description: "Seeking dedicated EMTs to provide basic life support and emergency medical care.",
+      description:
+        "Seeking dedicated EMTs to provide basic life support and emergency medical care.",
       requirements: [
         "Registered EMT with HPCSA",
         "Valid driver's license",
         "Physical fitness requirements",
-        "Team player attitude"
-      ]
+        "Team player attitude",
+      ],
     },
     {
       id: 3,
       title: "Flight Paramedic",
       location: "Durban",
       type: "Full-time",
-      description: "Specialized role for air ambulance operations requiring advanced medical skills.",
+      description:
+        "Specialized role for air ambulance operations requiring advanced medical skills.",
       requirements: [
         "Advanced Life Support Paramedic",
         "Flight medicine certification",
         "5+ years emergency experience",
-        "Ability to work in confined spaces"
-      ]
+        "Ability to work in confined spaces",
+      ],
     },
     {
       id: 4,
       title: "Control Room Operator",
       location: "Pretoria",
       type: "Shift work",
-      description: "Coordinate emergency responses and manage ambulance dispatch operations.",
+      description:
+        "Coordinate emergency responses and manage ambulance dispatch operations.",
       requirements: [
         "Emergency dispatch experience",
         "Excellent communication skills",
         "Computer literacy",
-        "Ability to work under pressure"
-      ]
-    }
+        "Ability to work under pressure",
+      ],
+    },
   ];
 
   const benefits = [
@@ -63,14 +67,24 @@ const CareersPage = () => {
     "Continuous training and development",
     "Career advancement opportunities",
     "Life insurance coverage",
-    "Pension fund contributions"
+    "Pension fund contributions",
   ];
 
   return (
     <main className="careers-page">
+      {/* Hero Section with Video */}
       <section className="hero-section">
+        <video
+          className="hero-video"
+          autoPlay
+          muted
+          loop
+          playsInline
+          src="https://cdn.pixabay.com/video/2018/09/26/18438-292228576_large.mp4"
+        />
+        <div className="hero-overlay" />
         <div className="container">
-          <motion.div 
+          <motion.div
             className="hero-content text-center"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -78,16 +92,48 @@ const CareersPage = () => {
           >
             <h1 className="hero-title">Join Our Life-Saving Team</h1>
             <p className="hero-subtitle">
-              Build a rewarding career in emergency medical services and make a real difference 
-              in people's lives every day.
+              Build a rewarding career in emergency medical services and make a
+              real difference in people's lives every day.
             </p>
           </motion.div>
         </div>
+
+        <style jsx>{`
+          .hero-section {
+            position: relative;
+            overflow: hidden;
+            padding: var(--space-xxl) 0;
+          }
+          .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+          }
+          .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+          }
+          .hero-content {
+            position: relative;
+            z-index: 2;
+            color: var(--color-text-inverse);
+          }
+        `}</style>
       </section>
 
+      {/* Job Openings Section */}
       <section className="section">
         <div className="container">
-          <motion.div 
+          <motion.div
             className="section-header text-center"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -96,7 +142,8 @@ const CareersPage = () => {
           >
             <h2>Current Openings</h2>
             <p className="section-subtitle">
-              Explore exciting career opportunities with South Africa's leading EMS provider
+              Explore exciting career opportunities with South Africa's leading
+              EMS provider
             </p>
           </motion.div>
 
@@ -138,9 +185,10 @@ const CareersPage = () => {
         </div>
       </section>
 
+      {/* Benefits Section */}
       <section className="benefits-section section">
         <div className="container">
-          <motion.div 
+          <motion.div
             className="section-header text-center"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -171,15 +219,10 @@ const CareersPage = () => {
         </div>
       </section>
 
+      {/* Styles for the rest of the page */}
       <style jsx>{`
         .careers-page {
           min-height: 100vh;
-        }
-
-        .hero-section {
-          background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-secondary-dark) 100%);
-          color: var(--color-text-inverse);
-          padding: var(--space-xxl) 0;
         }
 
         .hero-title {
@@ -305,15 +348,15 @@ const CareersPage = () => {
           .hero-title {
             font-size: var(--font-size-xxl);
           }
-          
+
           .hero-subtitle {
             font-size: var(--font-size-lg);
           }
-          
+
           .jobs-grid {
             grid-template-columns: 1fr;
           }
-          
+
           .benefits-grid {
             grid-template-columns: 1fr;
           }

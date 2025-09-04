@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import { FiMessageSquare, FiMail, FiPhone } from "react-icons/fi";
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({
@@ -7,13 +8,13 @@ const ContactPage = () => {
     email: "",
     phone: "",
     service: "",
-    message: ""
+    message: "",
   });
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -26,29 +27,23 @@ const ContactPage = () => {
 
   const contactInfo = [
     {
-      title: "Emergency Line",
-      value: "123-456-789",
-      icon: "🚨",
-      description: "24/7 Emergency Response"
-    },
-    {
-      title: "General Inquiries",
-      value: "info@bopheloems.co.za",
-      icon: "📧",
-      description: "Business hours: 8AM - 5PM"
-    },
-    {
-      title: "Head Office",
-      value: "123 Medical Drive, Johannesburg, 2000",
-      icon: "📍",
-      description: "Visit us during business hours"
-    },
-    {
       title: "WhatsApp",
       value: "+27 82 123 4567",
-      icon: "💬",
-      description: "Quick responses via WhatsApp"
-    }
+      icon: <FiMessageSquare size={24} />,
+      description: "Quick responses via WhatsApp",
+    },
+    {
+      title: "Email",
+      value: "info@bopheloems.co.za",
+      icon: <FiMail size={24} />,
+      description: "Business hours: 8AM - 5PM",
+    },
+    {
+      title: "Phone",
+      value: "123-456-789",
+      icon: <FiPhone size={24} />,
+      description: "24/7 Emergency Line",
+    },
   ];
 
   const serviceOptions = [
@@ -58,14 +53,25 @@ const ContactPage = () => {
     "Air Ambulance",
     "Medical Training",
     "Industrial Medical Services",
-    "Other"
+    "Other",
   ];
 
   return (
     <main className="contact-page">
       <section className="hero-section">
+        <video
+          className="hero-video"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          poster="/fallback-hero.jpg"
+          src="https://cdn.pixabay.com/video/2025/06/22/287269_large.mp4"
+        />
+        <div className="hero-overlay" />
         <div className="container">
-          <motion.div 
+          <motion.div
             className="hero-content text-center"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -73,8 +79,8 @@ const ContactPage = () => {
           >
             <h1 className="hero-title">Contact Bophelo EMS</h1>
             <p className="hero-subtitle">
-              We're here to help 24/7. Reach out for emergency services, 
-              quotes, or any questions about our medical services.
+              We're here to help 24/7. Reach out for emergency services, quotes,
+              or any questions about our medical services.
             </p>
           </motion.div>
         </div>
@@ -83,7 +89,7 @@ const ContactPage = () => {
       <section className="section">
         <div className="container">
           <div className="contact-grid">
-            <motion.div 
+            <motion.div
               className="contact-info-section"
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -92,8 +98,8 @@ const ContactPage = () => {
             >
               <h2>Get in Touch</h2>
               <p className="contact-intro">
-                Whether you need emergency medical services or want to learn more about 
-                our offerings, we're here to help.
+                Whether you need emergency medical services or want to learn
+                more about our offerings, we're here to help.
               </p>
 
               <div className="contact-cards">
@@ -117,7 +123,7 @@ const ContactPage = () => {
               </div>
             </motion.div>
 
-            <motion.div 
+            <motion.div
               className="contact-form-section"
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -127,7 +133,8 @@ const ContactPage = () => {
               <form className="contact-form card" onSubmit={handleSubmit}>
                 <h3>Send us a Message</h3>
                 <p className="form-description">
-                  Fill out the form below and we'll get back to you as soon as possible.
+                  Fill out the form below and we'll get back to you as soon as
+                  possible.
                 </p>
 
                 <div className="form-row">
@@ -176,7 +183,9 @@ const ContactPage = () => {
                     >
                       <option value="">Select a service</option>
                       {serviceOptions.map((option, idx) => (
-                        <option key={idx} value={option}>{option}</option>
+                        <option key={idx} value={option}>
+                          {option}
+                        </option>
                       ))}
                     </select>
                   </div>
@@ -210,7 +219,34 @@ const ContactPage = () => {
         }
 
         .hero-section {
-          background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+          position: relative;
+          height: 60vh;
+          overflow: hidden;
+        }
+
+        .hero-video {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          z-index: 0;
+        }
+
+        .hero-overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(0, 0, 0, 0.5);
+          z-index: 1;
+        }
+
+        .hero-content {
+          position: relative;
+          z-index: 2;
           color: var(--color-text-inverse);
           padding: var(--space-xxl) 0;
         }
@@ -341,16 +377,16 @@ const ContactPage = () => {
           .hero-title {
             font-size: var(--font-size-xxl);
           }
-          
+
           .hero-subtitle {
             font-size: var(--font-size-lg);
           }
-          
+
           .contact-grid {
             grid-template-columns: 1fr;
             gap: var(--space-xl);
           }
-          
+
           .form-row {
             grid-template-columns: 1fr;
             gap: 0;

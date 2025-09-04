@@ -1,142 +1,165 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 
+const branches = [
+  {
+    name: "Mpumalanga Head Office",
+    address: "48 Langenhoven street, Klipfontein Ext 08, Witbank 1035",
+    phone: "013 170 6125",
+    email: ["info@bopheloems.co.za", "caezer@bopheloems.co.za"],
+    mapQuery: "48+Langenhoven+street+Klipfontein+Witbank+Mpumalanga",
+  },
+  {
+    name: "North West Office",
+    address: "09 Stoffberg Street Ext 72, Stoffberg, Brits 0250",
+    phone: "013 170 6125 / 079 235 0134",
+    email: ["info@bopheloems.co.za", "pertunia@bopheloems.co.za"],
+    mapQuery: "09+Stoffberg+Street+Ext+72+Stoffberg+Brits+North+West",
+  },
+  {
+    name: "Limpopo Office",
+    address: "78 Orloog Walkraal B, Moteti 0477",
+    phone: "013 170 6125 / 013 170 5759",
+    email: ["info@bopheloems.co.za", "chautauquaacademy@gmail.com"],
+    mapQuery: "78+Orloog+Walkraal+Moteti+Limpopo",
+  },
+];
+
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    message: ""
-  });
+  const [selectedBranch, setSelectedBranch] = useState(branches[0]);
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle form submission
-    console.log("Form submitted:", formData);
-    alert("Thank you for your message. We'll get back to you soon!");
-    setFormData({ name: "", email: "", phone: "", message: "" });
+  const handleBranchClick = (branch) => {
+    setSelectedBranch(branch);
   };
 
   return (
     <section className="contact-section section">
       <div className="container">
-        <motion.div 
+        <motion.div
           className="section-header text-center"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h2>Contact Us</h2>
+          <h2>
+            Contact <span className="highlight">Us</span>
+          </h2>
           <p className="section-subtitle">
-            Get in touch for emergency services, quotes, or general inquiries
+            Reach us for emergency services, appointments, or general inquiries.
           </p>
         </motion.div>
 
+        {/* Branch Selector + Map */}
+        <motion.div
+          className="map-section"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
+          <div className="branch-selector">
+            {branches.map((branch, index) => (
+              <button
+                key={index}
+                onClick={() => handleBranchClick(branch)}
+                className={`branch-btn ${
+                  branch.name === selectedBranch.name ? "active" : ""
+                }`}
+              >
+                {branch.name}
+              </button>
+            ))}
+          </div>
+          <div className="map-container">
+            <iframe
+              title="Bophelo EMS Location"
+              src={`https://www.google.com/maps?q=${selectedBranch.mapQuery}&output=embed`}
+              width="100%"
+              height="400"
+              style={{ border: 0 }}
+              allowFullScreen=""
+              loading="lazy"
+            ></iframe>
+          </div>
+        </motion.div>
+
+        {/* Branch Info Cards */}
         <div className="contact-content">
-          <motion.div 
-            className="contact-info"
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <div className="contact-card card">
-              <h3>Emergency Contact</h3>
+          {branches.map((branch, index) => (
+            <motion.div
+              key={index}
+              className="contact-card card"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.2 }}
+              viewport={{ once: true }}
+            >
+              <h3>{branch.name}</h3>
+              <div className="contact-item">
+                <span className="contact-icon">📍</span>
+                <div>
+                  <strong>Address</strong>
+                  <p>{branch.address}</p>
+                </div>
+              </div>
               <div className="contact-item">
                 <span className="contact-icon">📞</span>
                 <div>
-                  <strong>Emergency Line</strong>
-                  <p>123-456-789</p>
+                  <strong>Phone</strong>
+                  <p>{branch.phone}</p>
                 </div>
               </div>
               <div className="contact-item">
                 <span className="contact-icon">📧</span>
                 <div>
                   <strong>Email</strong>
-                  <p>emergency@bopheloems.co.za</p>
+                  {branch.email.map((email, i) => (
+                    <p key={i}>{email}</p>
+                  ))}
                 </div>
               </div>
-              <div className="contact-item">
-                <span className="contact-icon">📍</span>
-                <div>
-                  <strong>Head Office</strong>
-                  <p>123 Medical Drive<br />Johannesburg, 2000</p>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-
-          <motion.div 
-            className="contact-form-container"
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <form className="contact-form card" onSubmit={handleSubmit}>
-              <h3>Send us a Message</h3>
-              <div className="form-group">
-                <label htmlFor="name">Full Name</label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="email">Email Address</label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="phone">Phone Number</label>
-                <input
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="message">Message</label>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows="5"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                ></textarea>
-              </div>
-              <button type="submit" className="btn btn-primary form-submit">
-                Send Message
+              <button className="btn btn-primary branch-btn">
+                Get Appointment
               </button>
-            </form>
-          </motion.div>
+            </motion.div>
+          ))}
         </div>
+
+        {/* Office Hours */}
+        <motion.div
+          className="office-hours card"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          viewport={{ once: true }}
+        >
+          <h3>Office Hours</h3>
+          <p>Monday - Thursday: 08:00 - 16:00</p>
+          <p>Friday & Holidays: 08:00 - 13:00</p>
+          <p>Saturday & Sunday: CLOSED</p>
+        </motion.div>
+
+        {/* General Contact */}
+        <motion.div
+          className="general-contact card"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.6 }}
+          viewport={{ once: true }}
+        >
+          <h3>General Contact</h3>
+          <p>Office: 013 170 6125</p>
+          <p>Ambulance: +27 79 235 0134</p>
+          <p>Emergency: +27 84 449 5966</p>
+          <p>Email: info@bopheloems.co.za</p>
+        </motion.div>
       </div>
 
       <style jsx>{`
         .contact-section {
           background-color: var(--color-background);
+          padding: var(--space-xxl) 0;
         }
 
         .section-header {
@@ -146,27 +169,69 @@ const Contact = () => {
         .section-subtitle {
           font-size: var(--font-size-lg);
           color: var(--color-text-muted);
-          max-width: 600px;
+          max-width: 700px;
           margin: 0 auto;
+        }
+
+        .map-section {
+          margin-bottom: var(--space-xxl);
+        }
+
+        .branch-selector {
+          display: flex;
+          flex-wrap: wrap;
+          gap: var(--space-md);
+          justify-content: center;
+          margin-bottom: var(--space-lg);
+        }
+
+        .branch-btn {
+          padding: var(--space-sm) var(--space-md);
+          border: 2px solid var(--color-primary);
+          border-radius: var(--radius-md);
+          background-color: var(--color-surface);
+          cursor: pointer;
+          transition: all 0.3s ease;
+        }
+
+        .branch-btn.active,
+        .branch-btn:hover {
+          background-color: var(--color-primary);
+          color: #fff;
+        }
+
+        .map-container iframe {
+          width: 100%;
+          border-radius: var(--radius-lg);
+          box-shadow: var(--shadow-md);
         }
 
         .contact-content {
           display: grid;
-          grid-template-columns: 1fr 1fr;
+          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
           gap: var(--space-xxl);
+          margin-bottom: var(--space-xxl);
         }
 
-        .contact-card h3,
-        .contact-form h3 {
+        .contact-card {
+          padding: var(--space-lg);
+          border-radius: var(--radius-lg);
+          box-shadow: var(--shadow-md);
+          background-color: var(--color-surface);
+          display: flex;
+          flex-direction: column;
+          gap: var(--space-md);
+        }
+
+        .contact-card h3 {
           color: var(--color-primary);
-          margin-bottom: var(--space-lg);
+          margin-bottom: var(--space-md);
         }
 
         .contact-item {
           display: flex;
-          align-items: flex-start;
           gap: var(--space-md);
-          margin-bottom: var(--space-lg);
+          align-items: flex-start;
         }
 
         .contact-icon {
@@ -180,49 +245,25 @@ const Contact = () => {
           margin-bottom: var(--space-xs);
         }
 
-        .contact-item p {
-          margin: 0;
-          color: var(--color-text-muted);
-        }
-
-        .form-group {
-          margin-bottom: var(--space-lg);
-        }
-
-        .form-group label {
-          display: block;
-          margin-bottom: var(--space-xs);
-          font-weight: var(--font-weight-bold);
-          color: var(--color-text);
-        }
-
-        .form-group input,
-        .form-group textarea {
-          width: 100%;
-          padding: var(--space-sm) var(--space-md);
-          border: 2px solid var(--color-border);
-          border-radius: var(--border-radius-md);
-          font-size: var(--font-size-md);
-          transition: all var(--transition-normal);
+        .office-hours,
+        .general-contact {
+          padding: var(--space-lg);
+          border-radius: var(--radius-lg);
+          box-shadow: var(--shadow-md);
           background-color: var(--color-surface);
+          margin-bottom: var(--space-lg);
+          text-align: center;
         }
 
-        .form-group input:focus,
-        .form-group textarea:focus {
-          border-color: var(--color-secondary);
-          box-shadow: 0 0 0 3px var(--color-secondary-light);
-        }
-
-        .form-submit {
-          width: 100%;
-          font-size: var(--font-size-md);
-          padding: var(--space-md);
+        .office-hours h3,
+        .general-contact h3 {
+          color: var(--color-primary);
+          margin-bottom: var(--space-md);
         }
 
         @media (max-width: 768px) {
           .contact-content {
             grid-template-columns: 1fr;
-            gap: var(--space-xl);
           }
         }
       `}</style>

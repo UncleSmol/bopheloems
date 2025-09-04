@@ -1,58 +1,113 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import {
+  FaAmbulance,
+  FaHospital,
+  FaRegCalendarCheck,
+  FaBook,
+  FaHelicopter,
+  FaIndustry,
+} from "react-icons/fa";
 
 const ServicesPage = () => {
   const services = [
     {
       id: 1,
       title: "Emergency Ambulance Services",
-      description: "24/7 emergency response with advanced life support capabilities",
-      icon: "🚑",
-      features: ["Advanced Life Support", "Cardiac Monitoring", "Trauma Care", "Critical Care Transport"]
+      description:
+        "24/7 emergency response with advanced life support capabilities",
+      icon: <FaAmbulance size={36} />,
+      features: [
+        "Advanced Life Support",
+        "Cardiac Monitoring",
+        "Trauma Care",
+        "Critical Care Transport",
+      ],
     },
     {
       id: 2,
       title: "Inter-Hospital Transfers",
-      description: "Safe and efficient patient transfers between medical facilities",
-      icon: "🏥",
-      features: ["ICU Transfers", "Specialized Equipment", "Medical Escorts", "Long Distance Transport"]
+      description:
+        "Safe and efficient patient transfers between medical facilities",
+      icon: <FaHospital size={36} />,
+      features: [
+        "ICU Transfers",
+        "Specialized Equipment",
+        "Medical Escorts",
+        "Long Distance Transport",
+      ],
     },
     {
       id: 3,
       title: "Event Medical Cover",
-      description: "Professional medical standby services for events and gatherings",
-      icon: "🎪",
-      features: ["Sports Events", "Concerts & Festivals", "Corporate Events", "Community Gatherings"]
+      description:
+        "Professional medical standby services for events and gatherings",
+      icon: <FaRegCalendarCheck size={36} />,
+      features: [
+        "Sports Events",
+        "Concerts & Festivals",
+        "Corporate Events",
+        "Community Gatherings",
+      ],
     },
     {
       id: 4,
       title: "Medical Training",
-      description: "Comprehensive first aid and emergency response training programs",
-      icon: "📚",
-      features: ["CPR Certification", "First Aid Training", "Corporate Training", "Community Workshops"]
+      description:
+        "Comprehensive first aid and emergency response training programs",
+      icon: <FaBook size={36} />,
+      features: [
+        "CPR Certification",
+        "First Aid Training",
+        "Corporate Training",
+        "Community Workshops",
+      ],
     },
     {
       id: 5,
       title: "Air Ambulance Services",
-      description: "Helicopter and fixed-wing aircraft for critical emergency transport",
-      icon: "🚁",
-      features: ["Helicopter Rescue", "Fixed Wing Transport", "Remote Area Access", "Critical Care Flight"]
+      description:
+        "Helicopter and fixed-wing aircraft for critical emergency transport",
+      icon: <FaHelicopter size={36} />,
+      features: [
+        "Helicopter Rescue",
+        "Fixed Wing Transport",
+        "Remote Area Access",
+        "Critical Care Flight",
+      ],
     },
     {
       id: 6,
       title: "Industrial Medical Services",
-      description: "Specialized medical support for mining and industrial operations",
-      icon: "⚡",
-      features: ["Mine Rescue", "Industrial First Aid", "Occupational Health", "Emergency Planning"]
-    }
+      description:
+        "Specialized medical support for mining and industrial operations",
+      icon: <FaIndustry size={36} />,
+      features: [
+        "Mine Rescue",
+        "Industrial First Aid",
+        "Occupational Health",
+        "Emergency Planning",
+      ],
+    },
   ];
 
   return (
     <main className="services-page">
       <section className="hero-section">
+        <video
+          className="hero-video"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          poster="/fallback-hero.jpg"
+          src="https://cdn.pixabay.com/video/2017/01/03/7012-197962781_large.mp4"
+        />
+        <div className="hero-overlay" />
         <div className="container">
-          <motion.div 
+          <motion.div
             className="hero-content text-center"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -60,8 +115,8 @@ const ServicesPage = () => {
           >
             <h1 className="hero-title">Our Services</h1>
             <p className="hero-subtitle">
-              Comprehensive emergency medical services designed to meet the diverse 
-              healthcare needs of South African communities.
+              Comprehensive emergency medical services designed to meet the
+              diverse healthcare needs of South African communities.
             </p>
           </motion.div>
         </div>
@@ -106,7 +161,7 @@ const ServicesPage = () => {
 
       <section className="cta-section section">
         <div className="container">
-          <motion.div 
+          <motion.div
             className="cta-content text-center"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -115,8 +170,8 @@ const ServicesPage = () => {
           >
             <h2>Need Emergency Medical Services?</h2>
             <p className="mb-lg">
-              Our team is ready to respond 24/7. Contact us for immediate assistance 
-              or to discuss your medical service requirements.
+              Our team is ready to respond 24/7. Contact us for immediate
+              assistance or to discuss your medical service requirements.
             </p>
             <div className="cta-buttons">
               <a href="tel:+27123456789" className="btn btn-primary">
@@ -136,7 +191,34 @@ const ServicesPage = () => {
         }
 
         .hero-section {
-          background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-secondary-dark) 100%);
+          position: relative;
+          height: 60vh;
+          overflow: hidden;
+        }
+
+        .hero-video {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          z-index: 0;
+        }
+
+        .hero-overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(0, 0, 0, 0.5);
+          z-index: 1;
+        }
+
+        .hero-content {
+          position: relative;
+          z-index: 2;
           color: var(--color-text-inverse);
           padding: var(--space-xxl) 0;
         }
@@ -173,8 +255,8 @@ const ServicesPage = () => {
         }
 
         .service-icon {
-          font-size: 3rem;
           margin-bottom: var(--space-md);
+          color: var(--color-primary);
         }
 
         .service-title {
@@ -227,7 +309,11 @@ const ServicesPage = () => {
         }
 
         .cta-section {
-          background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-primary) 100%);
+          background: linear-gradient(
+            135deg,
+            var(--color-primary-light) 0%,
+            var(--color-primary) 100%
+          );
           color: var(--color-text-inverse);
         }
 
@@ -260,20 +346,20 @@ const ServicesPage = () => {
           .hero-title {
             font-size: var(--font-size-xxl);
           }
-          
+
           .hero-subtitle {
             font-size: var(--font-size-lg);
           }
-          
+
           .services-grid {
             grid-template-columns: 1fr;
           }
-          
+
           .cta-buttons {
             flex-direction: column;
             align-items: center;
           }
-          
+
           .cta-buttons .btn {
             width: 100%;
             max-width: 300px;
